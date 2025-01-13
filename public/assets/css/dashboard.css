@@ -1,0 +1,154 @@
+.dashboard {
+  /* Amplada fixa de la dashboard i estil de l'aparença */
+  width: 1470px;
+  padding: 25px;
+  border-radius: 8px;
+  margin-bottom: 1.5%;
+  background-color: white;
+  /* Ombra per donar una mica de profunditat */
+  box-shadow: rgba(100,100,111,0.2) 0px 7px 29px 0px;
+
+  .benvinguda {
+    margin-bottom: 25px; /* Espai sota el missatge de benvinguda */
+  }
+
+  hr {
+    /* Estil del separador amb un gradient */
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, #d2691e, #ff7f50, #d2691e);
+    margin: 20px 0;
+  }
+
+  h2 {
+    text-align: center; /* Centra el text dels títols */
+  }
+
+  .afegir-article {
+    display: none; /* Amaga la secció d'afegir articles per defecte */
+  }
+
+  .apartats-titol {
+    /* Disseny de la secció de títols dels apartats */
+    display: flex;
+    width: 100%;
+    gap: 120px;
+  }
+
+  h3 {
+    width: 650px; /* Amplada fixa per al títol dels apartats */
+    text-align: center;
+  }
+
+  .apartats {
+    /* Disseny de la secció d'apartats amb flexbox */
+    display: flex;
+    gap: 120px;
+    justify-content: space-between;
+    align-items: center;
+
+    > div {
+      margin: 15px 0; /* Espai vertical per cada div fill */
+    }
+    
+    .form-article {
+      width: 650px; /* Amplada de la secció de formulari */
+
+      .missatge-error {
+        margin-top: 0;
+        margin-bottom: 10px; /* Marges per ajustar el missatge d'error */
+      }
+  
+      form label:first-child {
+        margin-top: 0; /* El primer label no té marge superior */
+      }
+  
+      input:not([type="file"]), textarea {
+        /* Estil dels inputs i textarea, excepte l'input de tipus file */
+        color: #1d1d1d;
+        font-size: 16px;
+        font-weight: 500;
+        width: 100%;
+        height: 46px;
+        letter-spacing: 0.03rem;
+        border: 1px solid #1d1d1d;
+        background: transparent;
+        outline: none;
+        border-radius: 8px;
+        text-indent: 20px; /* Espai interior per al text */
+        margin-top: 6px;
+        transition: all 0.3s ease; /* Transició per canvis d'estil */
+      }
+      
+      input:focus, textarea:focus {
+        border-color: chocolate; /* Canvia el color del contorn quan està enfocat */
+      }
+  
+      textarea {
+        transition: unset;
+        height: unset;
+        resize: none; /* Evita que el textarea es pugui redimensionar */
+        padding: 10px 15px;
+        text-indent: unset;
+        font-family: inherit; /* Hereta la font del contenedor pare */
+      }
+  
+      .imatge {
+        display: flex;
+        margin-top: 6px;
+        align-items: center; /* Alinea verticalment els elements de la secció de la imatge */
+  
+        .btn-imatge {
+          margin: unset;
+          width: 20%; /* Amplada del botó d'imatge */
+          font-size: 14px;
+          line-height: 35px; /* Alçada de línia del botó */
+        }
+  
+        p {
+          margin-left: 10px;
+          width: 78%; /* Amplada del paràgraf que mostra el nom de la imatge */
+          text-align: start; /* Text alineat a l'esquerra */
+        }
+      }
+      
+      input[type="file"] {
+        display: none; /* Amaga l'input de tipus file */
+      }
+    }
+
+    .vista-previa {
+      width: 500px; /* Amplada de la vista prèvia de l'article */
+    }
+  } 
+
+  h2 button {
+    position: absolute;
+    right: 58px; /* Botó posicionat a la dreta */
+    padding: 10px 12px;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer; /* Canvia el cursor quan es fa hover sobre el botó */
+  }
+  
+  .btn-add {
+    background-color: var(--btn-success-bg);
+    border: 1px solid var(--btn-success-border-color); /* Estil per al botó d'afegir */
+  }
+  
+  .btn-cancel {
+    background-color: var(--btn-danger-bg);
+    border: 1px solid var(--btn-danger-border-color); /* Estil per al botó de cancel·lar */
+  }
+  
+  .btn-add:hover {
+    background-color: var(--btn-success-hover-bg);
+    border-color: var(--btn-success-hover-border-color); /* Canvia els colors al passar el cursor */
+  }
+  
+  .btn-cancel:hover {
+    background-color: var(--btn-danger-hover-bg);
+    border-color: var(--btn-danger-hover-border-color);
+  }
+}

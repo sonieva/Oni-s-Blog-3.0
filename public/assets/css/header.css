@@ -1,0 +1,137 @@
+.navbar {
+  position: fixed; /* Fa que la barra de navegació estigui fixa a la part superior de la pàgina */
+  top: 0; /* La posiciona a la part superior de la finestra */
+  left: 0; /* L'alinea a l'esquerra */
+  display: flex; /* Utilitza flexbox per a l'alineació dels seus elements */
+  align-items: center; /* Centra els elements verticalment */
+  justify-content: space-between; /* Separa els elements als extrems de la barra */
+  background: linear-gradient(90deg, rgba(210, 105, 30, 0.7), rgba(255, 153, 102, 0.7), rgba(139, 69, 19, 0.7)); /* Aplica un degradat al fons */
+  padding: 0.5rem 0; /* Espai interior a dalt i a baix */
+  width: 100%; /* Amplada completa de la finestra */
+  z-index: 1000; /* Fa que la barra de navegació es superposi a altres elements */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Afegeix una ombra subtil a la barra per donar sensació de profunditat */
+
+  /* Estil per als divs fills directes */
+  > div {
+    padding: 0 0.5rem; /* Espai interior als costats */
+  }
+
+  .vertical-bar {
+    font-size: 2rem; /* Mida de la barra vertical */
+    margin: 0;
+    margin-bottom: 0.5rem; /* Espai a la part inferior */
+  }
+  
+  .logo {
+    display: flex; /* Flexbox per alinear els elements de la logo */
+    align-items: center; /* Centra els elements verticalment */
+    font-family: 'Montserrat', sans-serif; /* Tipus de lletra per a la logo */
+    color: white; /* Color del text de la logo */
+  }
+  
+  div.logo {
+    h2, h4 {
+      font-weight: 500; /* Pes de la lletra */
+    }
+  
+    h4 {
+      font-size: 1.5rem; /* Mida del subtítol de la logo */
+    }
+  }
+  
+  a.logo {
+    text-decoration: none; /* Elimina el subratllat dels enllaços */
+  
+    .logo-name {
+      margin: 0 0.5rem; /* Espai a banda i banda del nom de la logo */
+    }
+  }
+  
+  .nom-pantalla {
+    margin: 0;
+    margin-left: 0.5rem; /* Espai a l'esquerra del nom de la pantalla */
+  }
+  
+  .nav-items {
+    display: flex; /* Flexbox per als elements de navegació */
+    justify-content: end; /* Alinea els elements al final */
+    align-items: center; /* Centra els elements verticalment */
+    flex: 1; /* Fa que ocupi tot l'espai disponible */
+  
+    .nav-item {
+      color: white; /* Color del text dels elements de navegació */
+      text-decoration: none; /* Elimina el subratllat dels enllaços */
+      padding: 0 1rem; /* Espai als costats dels elements de navegació */
+      align-items: center;
+      display: flex; /* Flexbox per alinear els elements de cada enllaç */
+  
+      i {
+        font-size: 14px; /* Mida de les icones */
+      }
+  
+      /* Estil per a icones que no són fa-caret-left o fa-caret-down */
+      i:not(.fa-caret-left, .fa-caret-down, .fa-user) {
+        margin-right: 0.5rem; /* Espai a la dreta de l'icona */
+        pointer-events: all; /* Activa els events de ratolí */
+      }
+  
+      i.fa-caret-left, i.fa-caret-down {
+        margin-top: 6.2px; /* Ajusta la posició vertical de les icones de caret */
+        width: 8.75px;
+      }
+    }
+  }
+  
+  button#dropdown-toggle {
+    cursor: pointer; /* Canvia el cursor a una mà */
+    color: white; /* Color del text del botó */
+    background-color: transparent; /* Fons transparent */
+    border: none; /* Sense contorn */
+    font-family: inherit; /* Hereta la font del seu element pare */
+    font-size: inherit; /* Hereta la mida de lletra */
+    display: flex; /* Flexbox per alinear els elements del botó */
+    align-items: center; /* Centra els elements verticalment */
+    gap: 0.5rem; /* Espai entre els elements del botó */
+
+    .foto-perfil-header {
+      width: 36px;           /* Ajusta el tamaño de la imagen según tus necesidades */
+      height: 36px;          /* Debe ser igual al ancho para mantener el aspecto redondo */
+      border-radius: 50%;    /* Hace la imagen circular */
+      border: 2px solid #fff; /* Añade un borde alrededor de la imagen (puedes cambiar el color) */
+      object-fit: cover;     /* Asegura que la imagen se ajuste bien dentro del círculo */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Opcional: Añade una sombra para que destaque más */
+    }
+  }
+  
+  .dropdown-content {
+    display: none; /* Amaga el contingut del menú desplegable per defecte */
+    position: absolute; /* Posiciona l'element de manera absoluta */
+    background-color: rgba(166, 92, 33, 0.8); /* Fons semitransparent per al menú desplegable */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3); /* Ombra per al menú desplegable */
+    z-index: 1; /* Eleva el menú sobre altres elements */
+    top: 4rem; /* Es desplaça cap avall des de la part superior */
+    right: .6rem;
+    max-width: 145px;
+  }
+
+  .dropdown-content:has(> :nth-child(3)) {
+    max-width: 120px;
+  }
+  
+  .dropdown-content a {
+    color: white; /* Color del text dels enllaços */
+    padding: 8px 10px; /* Espai interior als enllaços */
+    text-decoration: none; /* Elimina el subratllat dels enllaços */
+    display: flex; /* Els enllaços ocupen tota l'amplada del contenidor */
+    align-items: center; /* Centra els elements verticalment */
+  }
+
+  .dropdown-content .admin-link {
+    display: flex; /* Flexbox per alinear els elements dels enllaços */
+    align-items: center; /* Centra els elements verticalment */
+  }
+  
+  .dropdown-content a:hover {
+    background-color: rgba(235, 113, 13, 0.5); /* Canvia el color de fons quan es fa hover */
+  }
+}

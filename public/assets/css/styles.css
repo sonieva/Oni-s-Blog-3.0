@@ -1,0 +1,50 @@
+/* Santi Onieva */
+
+/* Variables de color per a botons, definides a nivell global */
+:root {
+  --btn-danger-bg: #dc3545; /* Color de fons per a botons de perill (vermell) */
+  --btn-danger-border-color: #dc3545; /* Color de la vora per a botons de perill */
+  --btn-danger-hover-bg: #bb2d3b; /* Color de fons al passar el cursor sobre botons de perill */
+  --btn-danger-hover-border-color: #b02a37; /* Color de la vora al passar el cursor sobre botons de perill */
+
+  --btn-success-bg: #198754; /* Color de fons per a botons d'èxit (verd) */
+  --btn-success-border-color: #198754; /* Color de la vora per a botons d'èxit */
+  --btn-success-hover-bg: #157347; /* Color de fons al passar el cursor sobre botons d'èxit */
+  --btn-success-hover-border-color: #146c43; /* Color de la vora al passar el cursor sobre botons d'èxit */
+
+  --btn-warning-bg: #ffc107; /* Color de fons per a botons d'avís (groc) */
+  --btn-warning-border-color: #ffc107; /* Color de la vora per a botons d'avís */
+  --btn-warning-hover-bg: #d39e00; /* Color de fons al passar el cursor sobre botons d'avís */
+  --btn-warning-hover-border-color: #c69500; /* Color de la vora al passar el cursor sobre botons d'avís */
+}
+
+/* Aplica box-sizing per incloure padding i bord en l'amplada total dels elements */
+*, *::before, *::after {
+  box-sizing: border-box; /* Evita que el padding i els marges afectin la mida de l'element */
+  margin: 0; /* Elimina els marges per defecte de tots els elements */
+  padding: 0; /* Elimina els farciments per defecte de tots els elements */
+}
+
+body {
+  line-height: 1.5; /* Espaiat vertical entre línies de text */
+  background-image: url(../img/fons.svg); /* Imatge de fons per a la pàgina */
+  background-size: cover; /* Ajusta la imatge de fons per cobrir tota la pàgina */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tipografia del text */
+  font-size: 1rem; /* Mida del text */
+  display: flex; /* Aplica un contenidor flex per al cos de la pàgina */
+  flex-direction: column; /* Organitza els elements de manera vertical */
+  align-items: center; /* Centra els elements al llarg de l'eix horitzontal */
+  justify-content: center; /* Centra els elements al llarg de l'eix vertical */
+  margin-top: 100px; /* Afegeix un espai de 100px al marge superior de la pàgina */
+}
+
+.show {
+  display: block !important; /* Força la visualització d'elements amb aquesta classe, sobrescrivint altres regles */
+}
+
+.titol-inici {
+  background: white; /* Color de fons blanc per a l'encapçalament inicial */
+  padding: 25px; /* Espai intern de 25px al voltant del contingut */
+  border-radius: 8px; /* Arrodoneix les cantonades de l'element */
+  box-shadow: rgba(100,100,111,0.2) 0px 7px 29px 0px; /* Ombra subtil per donar profunditat a l'element */
+}

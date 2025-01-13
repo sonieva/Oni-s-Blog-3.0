@@ -1,0 +1,45 @@
+.modal {
+  position: fixed; /* Fa que la modal es mantingui fixa a la pantalla */
+  top: 0; /* Es posiciona a la part superior de la pantalla */
+  left: 0; /* Es posiciona a l'extrem esquerre de la pantalla */
+  width: 100%; /* Ocupa el 100% de l'amplada de la pantalla */
+  height: 100%; /* Ocupa el 100% de l'alçada de la pantalla */
+  background-color: rgba(0, 0, 0, 0.5); /* Fons negre translúcid per enfosquir el fons */
+  display: flex; /* Utilitza flexbox per centrar el contingut */
+  align-items: center; /* Centra verticalment el contingut */
+  justify-content: center; /* Centra horitzontalment el contingut */
+  z-index: 10000; /* Assegura que la modal estigui per sobre de tots els altres elements */
+
+  .modal-content {
+    background-color: #fff; /* Fons blanc per al contingut de la modal */
+    padding: 20px; /* Espai interior al voltant del contingut */
+    border-radius: 8px; /* Arrodoneix les cantonades de la modal */
+    width: 80%; /* Fa que la modal ocupi el 80% de l'amplada de la pantalla */
+    max-width: 600px; /* Amplada màxima de la modal de 600px per evitar que sigui massa gran */
+    position: relative; /* Permet posicionar elements de manera relativa dins de la modal */
+
+    .close-btn {
+      position: absolute; /* Posiciona el botó de tancament de manera absoluta dins de la modal */
+      top: 10px; /* Es desplaça 10px des de la part superior de la modal */
+      right: 20px; /* Es desplaça 20px des de la part dreta de la modal */
+      font-size: 20px; /* Mida del text del botó de tancament */
+      cursor: pointer; /* Canvia el cursor a una mà quan es passa per sobre */
+    }
+
+    .modal-title {
+      text-align: center; /* Centra el text del títol dins de la modal */
+    }
+
+    .modal-image {
+      width: 100%; /* Fa que la imatge de la modal ocupi tota l'amplada disponible */
+      max-height: 300px; /* Limita l'alçada màxima de la imatge a 300px */
+      object-fit: cover; /* Assegura que la imatge mantingui la proporció i ompli l'espai */
+      margin: 20px 0; /* Espai vertical al voltant de la imatge */
+      border-radius: 16px; /* Arrodoneix les cantonades de la imatge */
+    }
+
+    p {
+      word-break: break-word; /* Fa que les paraules llargues es trenquin per evitar que desbordin la modal */
+    }
+  }
+}

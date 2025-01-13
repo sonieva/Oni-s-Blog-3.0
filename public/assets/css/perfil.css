@@ -1,0 +1,115 @@
+.perfil {
+  width: 60%;
+  padding: 25px;
+  border-radius: 8px;
+  margin-bottom: 1.5%;
+  background-color: white;
+  box-shadow: rgba(100,100,111,0.2) 0px 7px 29px 0px;
+
+  hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, #d2691e, #ff7f50, #d2691e);
+    margin: 20px 0;
+  }
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .container-foto-perfil {
+    position: relative;
+    width: 100px;
+    height: 100px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .input-foto-perfil {
+      display: none;
+    }
+
+    .edit-icon {
+      position: absolute;
+      bottom: -5px;
+      right: 5px;
+      background-color: #f15b2a;
+      color: white;
+      border-radius: 50%;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .edit-icon:hover {
+      background-color: #ff7f50;
+    }
+    
+    .edit-icon i {
+      font-size: 14px;
+    }
+  }
+}
+
+.info-body p {
+  margin: 10px 0;
+}
+
+.btn-edit-perfil {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: #f15b2a;
+}
+
+.btn-edit-perfil:hover {
+  color: #ff7f50;
+}
+
+.btn-edit-perfil i {
+  font-size: 1.35rem;
+}
+
+.perfil-input {
+  display: none;
+}
+
+/* Estilos para los iconos de verificación del alias */
+.alies-status-icon {
+  font-size: 20px;
+  display: none; /* Por defecto, ocultamos el icono */
+  margin-left: 8px; /* Espacio entre el input y el icono */
+}
+
+.loading-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.texto-disponible {
+  color: green;
+}
+
+.texto-no-disponible {
+  color: red;
+}
+
+#alias-status-msg {
+  margin-top: 5px;
+  font-size: 0.9rem;
+}

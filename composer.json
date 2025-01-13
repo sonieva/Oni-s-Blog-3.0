@@ -1,0 +1,19 @@
+{
+    "name": "santi/onis-blog-3-0",
+    "require": {
+        "twig/twig": "^3.18"
+    },
+    "autoload": {
+        "psr-4": {
+            "Controllers\\": "src/Controllers/",
+            "Utils\\": "src/Utils/",
+            "Models\\": "src/Models/"
+        }
+    },
+    "authors": [
+        {
+            "name": "sonieva",
+            "email": "s.onieva@sapalomera.cat"
+        }
+    ]
+}

@@ -1,0 +1,252 @@
+@import url('variables.css');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; 
+}
+
+html, body {
+  height: 100%;
+  background-color: var(--primary-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 7rem;
+}
+
+.login-img {
+  width: 500px;
+  height: 500px;
+}
+
+.auth-form {
+  position: relative;
+  width: 440px;
+  padding: 25px 25px;
+  border-radius: 8px;
+  margin: 2.5% 0;
+  background-color: white;
+  box-shadow: #00000011 0px 0px 6px 0px;
+
+  h1 {
+    font-size: 1.7rem; 
+    text-align: center;
+  }
+
+  .back-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  form {
+    label {
+      color: #1d1d1d; /* Color del text */
+      font-size: 0.85rem; /* Mida del text */
+      font-weight: bold; /* Text en negreta */
+      letter-spacing: 0.04rem; /* Espai entre lletres */
+      display: block; /* Mostra el label en una línia separada */
+      margin-top: 12px; /* Espai superior */
+      user-select: none; /* Evita que l'usuari seleccioni el text */
+    }
+
+    .input-container {
+      position: relative;
+
+      input {
+        color: #1d1d1d; /* Color del text */
+        font-size: 1.05rem;
+        font-weight: 500;
+        width: 100%; /* Amplada completa */
+        height: 46px; /* Alçada dels inputs */
+        letter-spacing: 0.03rem;
+        border: 1.4px solid #1d1d1d; /* Contorn de color gris fosc */
+        background: transparent; /* Fons transparent */
+        outline: none; /* Elimina el contorn per defecte */
+        border-radius: 8px; /* Cantonades arrodonides */
+        text-indent: 15px; /* Espai per al text dins de l'input */
+        margin-top: 6px; /* Espai superior */
+        transition: all 0.3s ease; /* Transició suau per canvis d'estil */
+
+        &:focus {
+          border-color: var(--light-pink);
+        }
+
+        &:focus + i {
+          color: var(--light-pink)
+        }
+      }
+
+      i {
+        position: absolute;
+        font-size: 25px;
+        right: 10px;
+        top: 16px;
+        transition: all 0.3s ease;
+      }
+    }
+
+    button {
+      width: 100%; 
+      margin-top: 15px;
+      background: var(--black);
+      color: #fff; 
+      border: none; 
+      line-height: 50px; 
+      font-size: 18px; 
+      letter-spacing: 0.025em; 
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 8px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: var(--light-pink);
+      }
+    }
+  }
+}
+
+.login-form {
+
+  .remember-me {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    gap: 10px;
+    vertical-align: bottom;
+  
+    label[for="remember-me"] {
+      margin-top: unset;
+    }
+  
+    .checkbox-container {
+      display: inline-block;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-size: 16px;
+      user-select: none;
+  
+      .custom-checkbox {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+  
+        &:checked ~ .checkmark {
+          background-color: var(--light-pink);
+        }
+  
+        @keyframes checkAnim {
+          0% {
+            height: 0;
+          }
+      
+          100% {
+            height: 10px;
+          }
+        }
+  
+        &:checked ~ .checkmark:after {
+          animation: checkAnim 0.2s forwards;
+          display: block;
+        }
+      }
+  
+      .checkmark {
+        position: absolute;
+        top: -10px;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: #eee;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+  
+        &:after {
+          content: "";
+          position: absolute;
+          display: none;
+          left: 5px;
+          top: 3px;
+          width: 5px;
+          height: 8px;
+          border: solid white;
+          border-width: 0 3px 3px 0;
+          transform: rotate(45deg);
+          box-sizing: unset;
+        }
+      }
+    }
+  }
+
+  .social-provider-title {
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  .social-provider-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  
+    .social-provider {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      color: white;
+      text-decoration: none;
+      font-size: 25px;
+      transition: all 0.3s ease;
+
+      &.google {
+        background-color: #ee4d3f;
+        &:hover {
+          background-color: #c1351d;
+        }
+      }
+
+      &.github {
+        background-color: #464646;
+        &:hover {
+          background-color: #242424;
+        }
+      }
+
+      &.reddit {
+        background-color: #ff6d38;
+        &:hover {
+          background-color: #ff5700;
+        }
+      }
+
+      &.discord {
+        background-color: #7a94f3;
+        &:hover {
+          background-color: #5865f2;
+        }
+      }
+    }
+  }
+}
+
+

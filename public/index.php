@@ -3,6 +3,11 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Utils\Router;
+use Dotenv\Dotenv;
+
+// Cargar variables de entorno
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
 
 // Configura la zona horària i el local de la pàgina per a la zona horària de Madrid i el català
 ini_set('date.timezone', 'Europe/Madrid');

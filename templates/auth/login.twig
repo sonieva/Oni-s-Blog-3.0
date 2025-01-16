@@ -1,0 +1,54 @@
+{% extends "auth/base.twig" %}
+
+{% block content %}
+<div class="auth-form login-form">
+  <h1>Iniciar sessió</h1>
+
+  <img src="assets/icons/times.svg" class="back-icon" alt="Tornar" onclick="window.location.href = '/'" title="Tornar">
+
+  <form action="login" method="POST">
+    <label for="identifier">Correu electrònic o nom d'usuari</label>
+    <div class="input-container">
+      <input type="text" name="identifier" id="identifier" required autocomplete="off" autofocus>
+      <i class="fa-solid fa-user"></i>
+    </div>
+
+    <label for="password">Contrasenya</label>
+    <div class="input-container">
+      <input type="password" name="password" id="password" required autocomplete="off">
+      <i class="fa-solid fa-lock toggle-password" data-target="password" title="Mostrar contrasenya"></i>
+    </div>
+
+    <div class="remember-me">
+      <label for="remember-me">Recorda'm</label>
+      <label class="checkbox-container">
+          <input class="custom-checkbox" type="checkbox" name="remember-me" id="remember-me">
+          <span class="checkmark"></span>
+      </label>
+    </div>
+
+    <p>Has olvidat la contrasenya? <a href="recuperacio">Recupera-la</a></p>
+
+    <button type="submit">Entrar</button>
+  </form>
+  
+  <p>No tens compte? <a href="signup">Registra't</a></p>
+
+  <h4 class="social-provider-title">També pots iniciar sessio amb</h4>
+
+  <div class="social-provider-container">
+    <a href="auth/google.php" class="social-provider google">
+      <i class="fa-brands fa-google"></i>
+    </a>
+    <a onclick="authPopup('GitHub')" class="social-provider github">
+      <i class="fa-brands fa-github"></i>
+    </a>
+    <a onclick="authPopup('Reddit')" class="social-provider reddit">
+      <i class="fa-brands fa-reddit"></i>
+    </a>
+    <a onclick="authPopup('Discord')" class="social-provider discord">
+      <i class="fa-brands fa-discord"></i>
+    </a>
+  </div>
+</div>
+{% endblock %}

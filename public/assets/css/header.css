@@ -109,9 +109,13 @@
     background-color: rgba(166, 92, 33, 0.8); /* Fons semitransparent per al menú desplegable */
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3); /* Ombra per al menú desplegable */
     z-index: 1; /* Eleva el menú sobre altres elements */
-    top: 4rem; /* Es desplaça cap avall des de la part superior */
+    top: 60px; /* Es desplaça cap avall des de la part superior */
     right: .6rem;
     max-width: 145px;
+  }
+
+  .dropdown-content.active {
+    display: block; /* Mostra el menú desplegable quan està activat */
   }
 
   .dropdown-content:has(> :nth-child(3)) {

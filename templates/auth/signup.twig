@@ -1,0 +1,41 @@
+{% extends "auth/base.twig" %}
+
+{% block content %}
+<div class="auth-form registre-form">
+  <h1>Crear compte</h1>
+
+  <img src="assets/icons/times.svg" class="back-icon" alt="Tornar" onclick="window.location.href = '/'" title="Tornar">
+
+  <form action="signup" method="POST">
+    <label for="alies-register-input">Nom d'usuari</label>
+    <div class="input-container">
+      <input type="text" name="alies" id="alies-register-input" required autocomplete="off">
+      <i class="fa-solid fa-user"></i>
+      <span id="alies-register-status" class="alies-register-status-icon"></span>
+      <span id="alias-register-status-msg" class="alias-status-msg"></span>
+    </div>
+
+    <label for="email">Correu electrònic</label>
+    <div class="input-container">
+      <input type="email" name="email" id="email" required autocomplete="off">
+      <i class="fa-solid fa-at"></i>
+    </div>
+
+    <label for="password">Contrasenya</label>
+    <div class="input-container">
+      <input type="password" name="password" id="password" minlength="8" required>
+      <i class="fa-solid fa-lock toggle-password" data-target="password" title="Mostrar contrasenya"></i>
+    </div>
+
+    <label for="password2">Repeteix contrasenya</label>
+    <div class="input-container">
+      <input type="password" name="password2" id="password2"  minlength="8" required>
+      <i class="fa-solid fa-lock toggle-password" data-target="password2" title="Mostrar contrasenya"></i>
+    </div>
+
+    <button type="submit" class="signup">Registrar-se</button>
+  </form>
+
+  <!-- Enllaç per a aquells usuaris que ja tenen un compte i volen iniciar sessió. -->
+  <p>Ja tens compte? <a href="login">Inicia sessió</a></p>
+</div>{% endblock %}

@@ -6,6 +6,16 @@
 
   <img src="assets/icons/times.svg" class="back-icon" alt="Tornar" onclick="window.location.href = '/'" title="Tornar">
 
+  {% if errors %}
+    <div class="missatge-error">
+      <ul>
+        {% for error in errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
   <form action="login" method="POST">
     <label for="identifier">Correu electrònic o nom d'usuari</label>
     <div class="input-container">

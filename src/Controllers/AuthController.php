@@ -2,9 +2,10 @@
 
 namespace Controllers;
 
-use Utils\Auth;
 use Models\User;
+use Utils\Auth;
 use Utils\TwigService;
+use Utils\Validator;
 
 class AuthController {
   private User $userModel;
@@ -27,13 +28,24 @@ class AuthController {
       }
     }
 
+    $this->viewData['title'] = 'Iniciar sessió';
     TwigService::render('auth/login.twig', $this->viewData);
+  }
+
+  public function showSignupForm() {
+    $this->viewData['title'] = 'Crear compte';
+    TwigService::render('auth/signup.twig', $this->viewData);
   }
 
   public function login() {
     $identifier = $_POST['identifier'] ?? '';
     $password = $_POST['password'] ?? '';
     $rememberMe = isset($_POST['remember-me']);
+
+    if (empty($identifier) || empty($password)) {
+      $this->viewData['errors'][] = 'Has d\'omplir tots els camps';
+      return $this->showLoginForm();
+    }
 
     $user = $this->userModel->findByEmailOrNickname($identifier);
 
@@ -42,7 +54,17 @@ class AuthController {
 
       if ($rememberMe) {
         $token = bin2hex(random_bytes(32));
-        setcookie('remember_me_token', $token, time() + 60 * 60 * 24 * 30, '/');
+        setcookie(
+          'remember_me_token',
+          $token,
+          [
+            'expires' => time() + 60 * 60 * 24 * 30,
+            'path' => '/',
+            'secure' => (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443,
+            'httponly' => true,
+            'samesite' => 'Strict'
+          ]
+      );
         $this->userModel->update($user['id'], ['remember_me_token' => $token]);
       }
 
@@ -50,7 +72,7 @@ class AuthController {
       exit;
     }
 
-    $this->viewData['error'] = 'Les dades introduïdes no són correctes';
+    $this->viewData['errors'][] = 'Les credencials no són correctes';
     $this->showLoginForm();
   }
 

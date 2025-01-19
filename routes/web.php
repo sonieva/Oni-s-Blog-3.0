@@ -10,8 +10,13 @@ Router::GET('/',[HomeController::class,'index']);
 Router::GET('/login',[AuthController::class,'showLoginForm']);
 Router::POST('/login',[AuthController::class,'login']);
 
-// Signup
-Router::GET('/signup',[AuthController::class,'showSignupForm']);
+// Register
+Router::GET('/register',[AuthController::class,'showRegisterForm']);
+Router::POST('/register',[AuthController::class,'signup']);
+
+// Verify email
+Router::get('/verify-email', [AuthController::class, 'showVerificationForm']);
+Router::post('/verify-email', [AuthController::class, 'verifyCode']);
 
 // Logout
 Router::GET('/logout', [AuthController::class, 'logout']);

@@ -37,31 +37,31 @@
           {% else %}
             <img src="assets/icons/incognito.svg" alt="Usuari anònim" height="21" width="21">
           {% endif %}
-          <span id="header-nom">{{ user ? (user.full_name ?: user.nicname) : "Identifica't" }}</span>
+          <span id="header-nom">{{ user ? (user.full_name ?: user.nickname) : "Identifica't" }}</span>
           <i id="caret" class="fa-solid fa-caret-left"></i>
         </button>
 
         <div id="dropdown" class="dropdown-content">
           {% if user %}
-            <a href="perfil">
+            <a href="/perfil">
               <i class="fa-solid fa-user-gear"></i>Perfil
             </a>
-            <a href="dashboard">
+            <a href="/dashboard">
               <i class="fa-solid fa-gauge-high"></i>Dashboard
             </a>
             {% if user.role == 'admin' %}
-              <a href="admin" class="admin-link">
+              <a href="/admin" class="admin-link">
                 <i class="fa-solid fa-users-gear"></i>Gestió d'usuaris
               </a>
             {% endif %}
-            <a href="logout">
+            <a href="/logout">
               <i class="fa-solid fa-right-from-bracket"></i>Sortir
             </a>
           {% else %}
-            <a href="login">
+            <a href="/login">
               <i class="fa-solid fa-right-to-bracket"></i>Iniciar sessió
             </a>
-            <a href="signup">
+            <a href="/register">
               <i class="fa-solid fa-user-plus"></i>Crear compte
             </a>
           {% endif %}

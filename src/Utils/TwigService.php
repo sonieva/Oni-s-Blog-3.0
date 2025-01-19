@@ -24,4 +24,9 @@ class TwigService {
     self::$twig->addGlobal('user', Auth::getUser());
     echo self::$twig->render($view, $data);
   }
+
+  public static function renderTemplate(string $view, array $data = []): string {
+    self::init();
+    return self::$twig->render($view, $data);
+  }
 }

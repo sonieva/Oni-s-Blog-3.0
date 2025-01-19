@@ -266,4 +266,8 @@ html, body {
   }
 }
 
-
+.verify-email-form h5 {
+  text-align: center;
+  margin: 10px;
+  font-weight: normal;
+}

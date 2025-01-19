@@ -24,6 +24,17 @@ class User {
     return $stmt->fetch() ?: null;
   }
 
+  public function findByVerificationCode(string $code): ?array {
+    $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE verification_code = :code AND verification_expires_at > NOW()");
+    $stmt->execute(['code' => $code]);
+    return $stmt->fetch() ?: null;
+  }
+
+  public function confirmEmail(int $id): bool {
+    $stmt = $this->db->prepare("UPDATE {$this->table} SET verification_code = NULL, verification_expires_at = NULL, email_confirmed = 1 WHERE id = :id");
+    return $stmt->execute(['id' => $id]);
+  }
+
   /** 
    * Crea un nou usuari amb dades dinàmiques
    */

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificació del teu compte</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #f15b2a;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .verification-code {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f15b2a;
+            margin: 20px 0;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <h1>Benvingut a Oni's Blog!</h1>
+        <p>Hola,</p>
+        <p>Gràcies per registrar-te al nostre blog. Per confirmar la teva adreça de correu electrònic, introdueix el següent codi de verificació:</p>
+        <div class="verification-code">{{ verification_code }}</div>
+        <p>Si no has demanat aquest correu, pots ignorar-lo.</p>
+        <footer>
+            <p>Oni's Blog &copy; {{ year }}</p>
+        </footer>
+    </div>
+</body>
+</html>

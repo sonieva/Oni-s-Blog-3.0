@@ -101,6 +101,11 @@
       object-fit: cover;     /* Asegura que la imagen se ajuste bien dentro del círculo */
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Opcional: Añade una sombra para que destaque más */
     }
+
+    img[src^="assets/icons"] {
+      width: 21px; /* Ajusta la mida de la imatge */
+      height: 21px; /* Ajusta la mida de la imatge */
+    }
   }
   
   .dropdown-content {

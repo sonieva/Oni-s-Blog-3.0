@@ -22,9 +22,7 @@ body {
   display: block !important; /* Força la visualització d'elements amb aquesta classe, sobrescrivint altres regles */
 }
 
-.titol-inici {
-  background: white; /* Color de fons blanc per a l'encapçalament inicial */
-  padding: 25px; /* Espai intern de 25px al voltant del contingut */
-  border-radius: 8px; /* Arrodoneix les cantonades de l'element */
-  box-shadow: rgba(100,100,111,0.2) 0px 7px 29px 0px; /* Ombra subtil per donar profunditat a l'element */
+img[src^="assets/icons"]:not(#dropdown-toggle img) {
+  width: 16px;
+  margin-right: .5rem;
 }

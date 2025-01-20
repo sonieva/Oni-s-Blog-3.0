@@ -15,8 +15,8 @@ Router::GET('/register',[AuthController::class,'showRegisterForm']);
 Router::POST('/register',[AuthController::class,'signup']);
 
 // Verify email
-Router::get('/verify-email', [AuthController::class, 'showVerificationForm']);
-Router::post('/verify-email', [AuthController::class, 'verifyCode']);
+Router::GET('/verify-email', [AuthController::class, 'showVerificationForm']);
+Router::POST('/verify-email', [AuthController::class, 'verifyCode']);
 
 // Logout
 Router::GET('/logout', [AuthController::class, 'logout']);

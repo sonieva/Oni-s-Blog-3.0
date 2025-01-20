@@ -15,6 +15,7 @@ class MailService {
     $this->mailer->isSMTP();
     $this->mailer->Host = $_ENV['MAIL_HOST'];
     $this->mailer->SMTPAuth = true;
+    $this->mailer->CharSet = PHPMailer::CHARSET_UTF8;
     $this->mailer->Username = $_ENV['MAIL_USERNAME'];
     $this->mailer->Password = $_ENV['MAIL_PASSWORD'];
     $this->mailer->SMTPSecure = $_ENV['MAIL_ENCRYPTION']; // tls o ssl

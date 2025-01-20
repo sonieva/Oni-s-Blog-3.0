@@ -1,16 +1,10 @@
 <?php
 namespace Models;
 
-use PDO;
-use Config\Database;
+use Core\BaseModel;
 
-class User {
-  private PDO $db;
+class User extends BaseModel {
   private string $table = 'users';
-
-  public function __construct() {
-    $this->db = Database::connect();
-  }
 
   public function findByEmailOrNickname(string $identifier): ?array {
     $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE email = :identifier OR nickname = :identifier");
@@ -19,53 +13,36 @@ class User {
   }
 
   public function findByRememberMeToken(string $token): ?array {
-    $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE remember_me_token = :token");
-    $stmt->execute(['token' => $token]);
-    return $stmt->fetch() ?: null;
+    return $this->findWhere($this->table, ['remember_me_token' => $token])[0] ?? null;
   }
 
   public function findByVerificationCode(string $code): ?array {
-    $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE verification_code = :code AND verification_expires_at > NOW()");
-    $stmt->execute(['code' => $code]);
-    return $stmt->fetch() ?: null;
+    return $this->findWhere($this->table, [
+      'verification_code' => $code,
+      'verification_expires_at >' => date('Y-m-d H:i:s')
+    ])[0] ?? null;
   }
 
   public function confirmEmail(int $id): bool {
-    $stmt = $this->db->prepare("UPDATE {$this->table} SET verification_code = NULL, verification_expires_at = NULL, email_confirmed = 1 WHERE id = :id");
-    return $stmt->execute(['id' => $id]);
+    return $this->update($this->table, $id, [
+      'verification_code' => null,
+      'verification_expires_at' => null,
+      'email_confirmed' => 1
+    ]);
   }
 
-  /** 
-   * Crea un nou usuari amb dades dinàmiques
-   */
-  public function create(array $data): bool {
-    $columns = implode(', ', array_keys($data));
-    $placeholders = ':' . implode(', :', array_keys($data));
-
-    $sql = "INSERT INTO {$this->table} ($columns) VALUES ($placeholders)";
-    $stmt = $this->db->prepare($sql);
-
-    return $stmt->execute($data);
+  public function saveRememberMeToken(int $id, string $token): bool {
+    return $this->update($this->table, $id, ['remember_me_token' => $token]);
   }
 
-  /**
-   * Actualitza un usuari segons l'ID amb dades dinàmiques.
-   */
-  public function update(int $id, array $data): bool {
-    $fields = implode(', ', array_map(fn($key) => "$key = :$key", array_keys($data)));
-
-    $sql = "UPDATE {$this->table} SET $fields WHERE id = :id";
-    $data['id'] = $id;
-
-    $stmt = $this->db->prepare($sql);
-    return $stmt->execute($data);
+  public function saveVerificationCode(int $id, string $code, string $expiresAt): bool {
+    return $this->update($this->table, $id, [
+        'verification_code' => $code,
+        'verification_expires_at' => $expiresAt
+    ]);
   }
 
-  /** 
-   * Elimina un usuari segons l'ID
-   */
-  public function delete(int $id): bool {
-    $stmt = $this->db->prepare("DELETE FROM {$this->table} WHERE id = :id");
-    return $stmt->execute(['id' => $id]);
+  public function createUser(array $data): ?int {
+    return $this->insert($this->table, $data);
   }
 }

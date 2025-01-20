@@ -36,6 +36,10 @@ class AuthController {
     TwigService::render('auth/register.twig', $this->viewData);
   }
 
+  public function showVerificationForm(): void {
+    TwigService::render('auth/enter_verification_code.twig');
+  }
+
   public function login() {
     $identifier = $_POST['identifier'] ?? '';
     $password = $_POST['password'] ?? '';
@@ -63,8 +67,9 @@ class AuthController {
             'httponly' => true,
             'samesite' => 'Strict'
           ]
-      );
-        $this->userModel->update($user['id'], ['remember_me_token' => $token]);
+        );
+
+        $this->userModel->saveRememberMeToken($user['id'], $token);
       }
 
       header('Location: /');
@@ -115,30 +120,33 @@ class AuthController {
     $verificationCode = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
     $expiresAt = date('Y-m-d H:i:s', strtotime('+1 hour'));
 
-    $this->userModel->create([
+    $newUserId = $this->userModel->createUser([
       'nickname' => $nickname,
       'email' => $email,
       'password' => password_hash($password, PASSWORD_DEFAULT),
-      'verification_code' => $verificationCode,
-      'verification_expires_at' => $expiresAt
     ]);
 
-    $this->sendVerificationEmail($email, $verificationCode);
-
-    header('Location: /verify-email');
-    exit;
+    if ($newUserId) {
+      if (!$this->userModel->saveVerificationCode($newUserId, $verificationCode, $expiresAt)) {
+        error_log("No s'ha pogut guardar el codi de verificació per a l'usuari ID $newUserId");
+        TwigService::render('auth/register.twig', [
+            'error' => 'Ha ocorregut un error completant el registre. Si us plau, torna-ho a intentar més tard.'
+        ]);
+        return;
+      }
+  
+      $this->sendVerificationEmail($email, $verificationCode);
+  
+      header('Location: /verify-email');
+      exit;
+    } else {
+      error_log("Error creant l'usuari amb l'email $email");
+      TwigService::render('auth/register.twig', [
+          'error' => 'No s\'ha pogut completar el registre. Si us plau, torna-ho a intentar més tard.'
+      ]);
+    }
   }
-
-  public function logout() {
-    Auth::logout();
-    header('Location: /');
-    exit;
-  }
-
-  public function showVerificationForm(): void {
-    TwigService::render('auth/enter_verification_code.twig');
-  }
-
+  
   public function verifyCode(): void {
     $code = trim($_POST['verification-code'] ?? '');
 
@@ -164,8 +172,13 @@ class AuthController {
 
     header('Location: /');
     exit;
-}
+  }
 
+  public function logout() {
+    Auth::logout();
+    header('Location: /');
+    exit;
+  }
 
   private function sendVerificationEmail(string $email, string $code): void {
     $mailService = new MailService();

@@ -1,0 +1,65 @@
+{% extends 'base.twig' %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="assets/css/home.css" type="text/css">
+{% endblock %}
+
+{% block content %}
+  <div class="title">
+    <h1>Articles publicats</h1>
+  </div>
+
+  <!-- Barra de control -->
+  <div class="control-bar">
+    <!-- Barra de búsqueda -->
+    <div class="search-box">
+      <input type="text" id="search-input" placeholder="Busca articles...">
+      <button id="search-button">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </div>
+
+    <!-- Barra de paginación -->
+    <div class="pagination-control">
+      <button class="page-btn" data-page="prev" disabled>
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <div class="page-numbers"></div>
+      <button class="page-btn" data-page="next">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <!-- Selector de ordenación -->
+    <div class="sort-control">
+      <select id="sort-select">
+        <option value="recent" selected>Recents</option>
+        <option value="older">Antics</option>
+        <option value="title-asc">Títol (A-Z)</option>
+        <option value="title-desc">Títol (Z-A)</option>
+        <option value="popular">Popular</option>
+      </select>
+    </div>
+
+    <!-- Selector de artículos por página -->
+    <div class="articles-per-page-control">
+      <select id="articles-per-page">
+        <option value="5">5 / pàgina</option>
+        <option value="8" selected>8 / pàgina</option>
+        <option value="12">12 / pàgina </option>
+        <option value="20">20 / pàgina</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Spinner de carga -->
+  <div id="loading-spinner" class="spinner" style="display: none;">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Contenedor de artículos -->
+  <div id="articles-container" class="articles">
+    <!-- Los artículos se cargarán dinámicamente con AJAX -->
+  </div>
+
+{% endblock %}

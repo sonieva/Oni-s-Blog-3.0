@@ -6,11 +6,11 @@ use Utils\TwigService;
 use Models\Article;
 
 class HomeController {
-  private Article $articleModel;
+  // private Article $articleModel;
   private array $viewData = [];
 
   public function __construct() {
-    $this->articleModel = new Article();
+    // $this->articleModel = new Article();
   }
 
   public function index() {

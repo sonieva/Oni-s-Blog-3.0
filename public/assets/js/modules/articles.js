@@ -39,7 +39,7 @@ export function ArticlesModule(config) {
           success: function (response) {
               loadingSpinner.hide();
               renderArticles(response.articles);
-              renderPagination(response.current_page, response.total_pages);
+              renderPagination(response.currentPage, response.totalPages);
           },
           error: function (xhr) {
               console.error('Error al cargar los artículos:', xhr.responseText);
@@ -65,18 +65,37 @@ export function ArticlesModule(config) {
   }
 
   function renderPagination(currentPage, totalPages) {
-      if (currentPage > 1) {
-          paginationContainer.append(`<button class="page-btn" data-page="${currentPage - 1}">Anterior</button>`);
-      }
-      for (let i = 1; i <= totalPages; i++) {
-          paginationContainer.append(`
-              <button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>
-          `);
-      }
-      if (currentPage < totalPages) {
-          paginationContainer.append(`<button class="page-btn" data-page="${currentPage + 1}">Següent</button>`);
-      }
+    paginationContainer.empty(); // Limpia el contenedor antes de agregar contenido
+
+    // Primera página
+    if (currentPage > 3) {
+        paginationContainer.append(`<button class="page-btn" data-page="1">1</button>`);
+        if (currentPage > 4) {
+            paginationContainer.append('<span class="pagination-dots">...</span>');
+        }
+    }
+
+    // Páginas cercanas al actual (máximo 2 antes y 2 después)
+    const startPage = Math.max(2, currentPage - 2);
+    const endPage = Math.min(totalPages - 1, currentPage + 2);
+
+    for (let i = startPage; i <= endPage; i++) {
+        paginationContainer.append(`
+            <button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>
+        `);
+    }
+
+    // Última página
+    if (currentPage < totalPages - 2) {
+        if (currentPage < totalPages - 3) {
+            paginationContainer.append('<span class="pagination-dots">...</span>');
+        }
+        paginationContainer.append(`<button class="page-btn" data-page="${totalPages}">${totalPages}</button>`);
+    }
   }
+
+
+
 
   // Eventos
   $(`#search-button`).on('click', function () {

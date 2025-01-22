@@ -41,6 +41,6 @@ class Router {
   }
 
   private static function render404(): void {
-    TwigService::render('404.twig');
+    TwigService::render('404.html.twig');
   }
 }

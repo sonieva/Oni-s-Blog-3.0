@@ -29,15 +29,15 @@ class AuthController {
       }
     }
 
-    TwigService::render('auth/login.twig', $this->viewData);
+    TwigService::render('auth/login.html.twig', $this->viewData);
   }
 
   public function showRegisterForm() {
-    TwigService::render('auth/register.twig', $this->viewData);
+    TwigService::render('auth/register.html.twig', $this->viewData);
   }
 
   public function showVerificationForm(): void {
-    TwigService::render('auth/enter_verification_code.twig');
+    TwigService::render('auth/enter_verification_code.html.twig');
   }
 
   public function login() {
@@ -109,7 +109,7 @@ class AuthController {
     }
 
     if ($errors) {
-      TwigService::render('auth/register.twig', [
+      TwigService::render('auth/register.html.twig', [
         'errors' => $errors,
         'nickname' => $nickname,
         'email' => $email
@@ -129,7 +129,7 @@ class AuthController {
     if ($newUserId) {
       if (!$this->userModel->saveVerificationCode($newUserId, $verificationCode, $expiresAt)) {
         error_log("No s'ha pogut guardar el codi de verificació per a l'usuari ID $newUserId");
-        TwigService::render('auth/register.twig', [
+        TwigService::render('auth/register.html.twig', [
             'error' => 'Ha ocorregut un error completant el registre. Si us plau, torna-ho a intentar més tard.'
         ]);
         return;
@@ -141,7 +141,7 @@ class AuthController {
       exit;
     } else {
       error_log("Error creant l'usuari amb l'email $email");
-      TwigService::render('auth/register.twig', [
+      TwigService::render('auth/register.html.twig', [
           'error' => 'No s\'ha pogut completar el registre. Si us plau, torna-ho a intentar més tard.'
       ]);
     }
@@ -151,7 +151,7 @@ class AuthController {
     $code = trim($_POST['verification-code'] ?? '');
 
     if (empty($code)) {
-      TwigService::render('auth/enter_verification_code.twig', [
+      TwigService::render('auth/enter_verification_code.html.twig', [
         'errors' => ['El codi és obligatori']
       ]);
       return;
@@ -160,7 +160,7 @@ class AuthController {
     $user = $this->userModel->findByVerificationCode($code);
 
     if (!$user) {
-      TwigService::render('auth/enter_verification_code.twig', [
+      TwigService::render('auth/enter_verification_code.html.twig', [
         'errors' => ['El codi no és vàlid o ha caducat']
       ]);
       return;
@@ -184,7 +184,7 @@ class AuthController {
     $mailService = new MailService();
 
     $subject = 'Verificació del teu correu electrònic';
-    $body = TwigService::renderTemplate('email/verification.twig', [
+    $body = TwigService::renderTemplate('email/verification.html.twig', [
         'verification_code' => $code,
         'year' => date('Y')
     ]);

@@ -34,7 +34,7 @@
       <div class="nav-item">
         <button id="dropdown-toggle">
           {% if user %}
-            <img src="{{ user.img_path ?: 'assets/img/placeholder-usuari.png' }}" alt="Imatge de perfil" class="foto-perfil-header" id="foto-perfil-header">
+            <img src="{{ user.img_path ?: 'assets/img/default-user.png' }}" alt="Imatge de perfil" class="foto-perfil-header" id="foto-perfil-header">
           {% else %}
             <img src="assets/icons/incognito.svg" alt="Usuari anònim">
           {% endif %}
@@ -44,15 +44,15 @@
 
         <div id="dropdown" class="dropdown-content">
           {% if user %}
-            <a href="/perfil">
+            <a href="/profile">
               <img src="assets/icons/profile.svg">Perfil
             </a>
             <a href="/dashboard">
               <img src="assets/icons/dashboard.svg">Dashboard
             </a>
             {% if user.role == 'admin' %}
-              <a href="/admin" class="admin-link">
-                <img src="assets/icons/admin-users.svg">Gestió d'usuaris
+              <a href="/admin">
+                <img src="assets/icons/admin-users.svg">Usuaris
               </a>
             {% endif %}
             <a href="/logout">

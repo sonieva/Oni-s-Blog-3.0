@@ -1,12 +1,12 @@
 export function ArticlesModule(config) {
   const {
-      articlesContainerId,
-      paginationContainerId,
-      searchInputId,
-      articlesPerPageSelectId,
-      sortSelectId,
-      spinnerId,
-      apiEndpoint
+    articlesContainerId,
+    paginationContainerId,
+    searchInputId,
+    articlesPerPageSelectId,
+    sortSelectId,
+    spinnerId,
+    apiEndpoint
   } = config;
 
   const articlesContainer = $(`#${articlesContainerId}`);
@@ -22,46 +22,65 @@ export function ArticlesModule(config) {
   let searchQuery = '';
 
   function loadArticles() {
-      loadingSpinner.show();
-      articlesContainer.empty();
-      paginationContainer.empty();
+    loadingSpinner.show();
+    articlesContainer.empty();
+    paginationContainer.empty();
 
-      $.ajax({
-          url: apiEndpoint,
-          method: 'GET',
-          data: {
-              page: currentPage,
-              limit: articlesPerPage,
-              sort: sort,
-              search: searchQuery
-          },
-          dataType: 'json',
-          success: function (response) {
-              loadingSpinner.hide();
-              renderArticles(response.articles);
-              renderPagination(response.currentPage, response.totalPages);
-          },
-          error: function (xhr) {
-              console.error('Error al cargar los artículos:', xhr.responseText);
-              loadingSpinner.hide();
-          }
-      });
+    $.ajax({
+      url: apiEndpoint,
+      method: 'GET',
+      data: {
+        page: currentPage,
+        limit: articlesPerPage,
+        sort: sort,
+        search: searchQuery
+      },
+      dataType: 'json',
+      success: function (response) {
+        loadingSpinner.hide();
+        renderArticles(response.articles);
+        renderPagination(response.currentPage, response.totalPages);
+      },
+      error: function (xhr) {
+        console.error('Error al cargar los artículos:', xhr.responseText);
+        loadingSpinner.hide();
+      }
+    });
   }
 
   function renderArticles(articles) {
-      if (articles.length === 0) {
-          articlesContainer.html('<p>No hi ha articles disponibles.</p>');
-          return;
-      }
-      articles.forEach(article => {
-          articlesContainer.append(`
-              <div class="article">
-                  <h2>${article.title}</h2>
-                  <p>${article.body.substring(0, 150)}...</p>
-                  <a href="/article/${article.id}">Llegir més</a>
-              </div>
-          `);
-      });
+    if (articles.length === 0) {
+      articlesContainer.html('<p>No hi ha articles disponibles.</p>');
+      return;
+    }
+    articles.forEach(article => {
+      const id = article.id;
+      const title = article.title;
+      const body = article.body.substring(0, 350) + '...';
+      const created = new Date(article.created).toLocaleDateString();
+      const last_modified = (article.last_modified) ? new Date(article.last_modified).toLocaleDateString() : null;
+      const author_id = article.author_id;
+      const author_nickname = article.author_nickname;
+      const author_img_path = article.author_img_path || 'assets/img/default-user.png';
+      const img_path = `uploads/articles/${article.img_path}`;
+
+      articlesContainer.append(`
+        <div class="article" data-id="${id}">
+          <img src="${img_path}" alt="${title}">
+          <div class="article-info">
+            <h2>${title}</h2>
+            <p>${body}</p>
+            <div class="author-info" data-id="${author_id}">
+              <p>${author_nickname}</p>
+              <img src="${author_img_path}" alt="${author_nickname}">
+            </div>
+            <p>Publicat el ${created}</p>
+            ${last_modified ? `<p>Modificat el ${last_modified}</p>` : ''}
+          </div>
+          <img src="assets/icons/star.svg" alt="Favorit" class="favorite-icon">
+        </div>
+      `);
+    });
   }
 
   function renderPagination(currentPage, totalPages) {
@@ -69,10 +88,10 @@ export function ArticlesModule(config) {
 
     // Primera página
     if (currentPage > 3) {
-        paginationContainer.append(`<button class="page-btn" data-page="1">1</button>`);
-        if (currentPage > 4) {
-            paginationContainer.append('<span class="pagination-dots">...</span>');
-        }
+      paginationContainer.append(`<button class="page-btn" data-page="1">1</button>`);
+      if (currentPage > 4) {
+        paginationContainer.append('<span class="pagination-dots">...</span>');
+      }
     }
 
     // Páginas cercanas al actual (máximo 2 antes y 2 después)
@@ -80,45 +99,42 @@ export function ArticlesModule(config) {
     const endPage = Math.min(totalPages - 1, currentPage + 2);
 
     for (let i = startPage; i <= endPage; i++) {
-        paginationContainer.append(`
-            <button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>
-        `);
+      paginationContainer.append(`
+        <button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>
+      `);
     }
 
     // Última página
     if (currentPage < totalPages - 2) {
-        if (currentPage < totalPages - 3) {
-            paginationContainer.append('<span class="pagination-dots">...</span>');
-        }
-        paginationContainer.append(`<button class="page-btn" data-page="${totalPages}">${totalPages}</button>`);
+      if (currentPage < totalPages - 3) {
+        paginationContainer.append('<span class="pagination-dots">...</span>');
+      }
+      paginationContainer.append(`<button class="page-btn" data-page="${totalPages}">${totalPages}</button>`);
     }
   }
 
-
-
-
   // Eventos
   $(`#search-button`).on('click', function () {
-      searchQuery = searchInput.val();
-      currentPage = 1;
-      loadArticles();
+    searchQuery = searchInput.val();
+    currentPage = 1;
+    loadArticles();
   });
 
   articlesPerPageSelect.on('change', function () {
-      articlesPerPage = $(this).val();
-      currentPage = 1;
-      loadArticles();
+    articlesPerPage = $(this).val();
+    currentPage = 1;
+    loadArticles();
   });
 
   sortSelect.on('change', function () {
-      sort = $(this).val();
-      currentPage = 1;
-      loadArticles();
+    sort = $(this).val();
+    currentPage = 1;
+    loadArticles();
   });
 
   paginationContainer.on('click', '.page-btn', function () {
-      currentPage = parseInt($(this).data('page'));
-      loadArticles();
+    currentPage = parseInt($(this).data('page'));
+    loadArticles();
   });
 
   // Inicialización

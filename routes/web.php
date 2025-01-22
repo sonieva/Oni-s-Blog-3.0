@@ -3,8 +3,21 @@
 use Utils\Router;
 use Controllers\AuthController;
 use Controllers\HomeController;
+use Controllers\ProfileController;
+use Core\Middleware;
 
+// Inici
 Router::GET('/',[HomeController::class,'index']);
+
+// Profile
+Router::GET('/profile', function () {
+  Middleware::auth();
+  (new ProfileController())->index();
+});
+
+// --------------------------------------------------------------------
+// ------------------------------- AUTH -------------------------------
+// --------------------------------------------------------------------
 
 // Login
 Router::GET('/login',[AuthController::class,'showLoginForm']);

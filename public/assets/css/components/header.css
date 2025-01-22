@@ -117,30 +117,21 @@
     top: 60px; /* Es desplaça cap avall des de la part superior */
     right: .6rem;
     max-width: 145px;
-  }
 
-  .dropdown-content.active {
-    display: block; /* Mostra el menú desplegable quan està activat */
-  }
+    &.active {
+      display: block;
+    }
 
-  .dropdown-content:has(> :nth-child(3)) {
-    max-width: 120px;
-  }
-  
-  .dropdown-content a {
-    color: white; /* Color del text dels enllaços */
-    padding: 8px 10px; /* Espai interior als enllaços */
-    text-decoration: none; /* Elimina el subratllat dels enllaços */
-    display: flex; /* Els enllaços ocupen tota l'amplada del contenidor */
-    align-items: center; /* Centra els elements verticalment */
-  }
+    a {
+      color: white; /* Color del text dels enllaços */
+      padding: 8px 10px; /* Espai interior als enllaços */
+      text-decoration: none; /* Elimina el subratllat dels enllaços */
+      display: flex; /* Els enllaços ocupen tota l'amplada del contenidor */
+      align-items: center; /* Centra els elements verticalment */
 
-  .dropdown-content .admin-link {
-    display: flex; /* Flexbox per alinear els elements dels enllaços */
-    align-items: center; /* Centra els elements verticalment */
-  }
-  
-  .dropdown-content a:hover {
-    background-color: rgba(235, 113, 13, 0.5); /* Canvia el color de fons quan es fa hover */
+      &:hover {
+        background-color: rgba(235, 113, 13, 0.5); /* Canvia el color de fons quan es fa hover */
+      }
+    }
   }
 }

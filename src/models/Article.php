@@ -25,7 +25,22 @@ class Article extends BaseModel {
   }
 
   public function getArticlesWithPagination(int $limit, int $offset): array {
-    $sql = "SELECT * FROM articles ORDER BY created_at DESC LIMIT :offset, :limit";
+    $sql = "
+      SELECT 
+        articles.*,
+        users.nickname AS author_nickname,
+        users.img_path AS author_img_path
+      FROM 
+        articles
+      INNER JOIN 
+        users
+      ON 
+        articles.author_id = users.id
+      ORDER BY 
+        articles.created DESC
+      LIMIT 
+        :offset, :limit
+    ";
     $stmt = $this->db->prepare($sql);
     $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
     $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);

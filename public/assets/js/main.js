@@ -13,13 +13,13 @@ $(document).ready(function () {
   //   '#alias-register-status-msg',
   //   '/api/check-alies.php'
   // );
-  // ArticlesModule({
-  //   articlesContainerId: 'articles-container',
-  //   paginationContainerId: 'pagination',
-  //   searchInputId: 'search-input',
-  //   articlesPerPageSelectId: 'articles-per-page',
-  //   sortSelectId: 'sort-select',
-  //   spinnerId: 'loading-spinner',
-  //   apiEndpoint: '/api/articles'
-  // });
+  ArticlesModule({
+    articlesContainerId: 'articles-container',
+    paginationContainerId: 'pagination',
+    searchInputId: 'search-input',
+    articlesPerPageSelectId: 'articles-per-page',
+    sortSelectId: 'sort-select',
+    spinnerId: 'loading-spinner',
+    apiEndpoint: '/api/articles'
+  });
 });

@@ -9,6 +9,6 @@ class ProfileController {
 
   public function index() {
     $this->viewData['title'] = 'Perfil';
-    TwigService::render('profile.twig', $this->viewData);
+    TwigService::render('profile.html.twig', $this->viewData);
   }
 }

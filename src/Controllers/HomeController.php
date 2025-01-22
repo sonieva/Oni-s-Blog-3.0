@@ -13,6 +13,6 @@ class HomeController {
 
   public function index() {
     $this->viewData['title'] = 'Inici';
-    TwigService::render('home.twig', $this->viewData);
+    TwigService::render('home.html.twig', $this->viewData);
   }
 }

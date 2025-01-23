@@ -1,10 +1,20 @@
 :root {
   --primary-color: #ffad5c;
   --mustard: #ffd747;
+  --mustard-border: #f1c219;
+  --mustard-hover: #f1c219;
   --light-pink: #ffadc2;
   --light-pink-focus: #ff85a3;
   --dark-pink: #ff4775;
   --light-purple: #ebdde9;
   --black: #474747;
-  --disabled: #bbb;
+  --gray: #666666;
+  --disabled: #c1c1c163;
+  --btn-danger-color: #ff6060;
+  --btn-danger-border-color: #ff4747;
+  --btn-danger-hover-color: #ff4747;
+  --btn-danger-hover-border-color: #ff2929;
+  --btn-upload-color: #50dd50;
+  --btn-upload-border-color: #30c938;
+  --btn-upload-hover-color: #30c938;
 }

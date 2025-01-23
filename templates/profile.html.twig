@@ -6,8 +6,7 @@
 
 {% block content %}
   <div class="profile-container">
-    <!-- Tabs verticales -->
-    <!-- <div class="tabs">
+    <!-- <div class="tabs-heads">
       <div class="tab-head active" data-tab="general">
         <img src="assets/icons/general.svg" alt="General">
         <p>General</p>
@@ -22,47 +21,60 @@
       </div>
     </div> -->
 
-    <div class="tab-content active" id="general">
-      <div class="profile-header">
-        <img src="{{ user.img_path ?: 'assets/img/default-user.png' }}" alt="Foto de perfil" class="profile-avatar">
-        <div>
-          <h2>{{ user.nickname }}</h2>
-          <p>{{ user.full_name }}</p>
+    <div class="tabs">
+      <div class="tab-content active" id="general">
+        <div class="profile-header">
+          <img src="{{ user.img_path ?: 'assets/img/default-user.png' }}" alt="Foto de perfil" class="profile-avatar">
+          <div>
+            <h2>{{ user.nickname }}</h2>
+            <p>{{ user.full_name }}</p>
+          </div>
         </div>
-        <button class="btn-delete-account">Eliminar compte</button>
-      </div>
-
-      <hr class="divider">
-
-      <div class="profile-info">
-        <div class="form-group">
-          <label for="nickname">Nom d’usuari</label>
-          <input type="text" id="nickname" value="{{ user.nickname }}" readonly>
-          <button class="btn-edit">✏️</button>
+        
+        <button class="btn-delete-account">
+          <img src="assets/icons/trash.svg" alt="Eliminar">
+          Eliminar compte
+        </button>
+        
+        <hr class="divider">
+  
+        <div class="profile-info">
+          <div class="form-group">
+            <label for="nickname">Nom d’usuari</label>
+            <input type="text" id="nickname" value="{{ user.nickname }}" disabled>
+            <button class="btn-edit">
+              <img src="assets/icons/pencil-edit.svg" alt="Editar">
+            </button>
+          </div>
+  
+          <div class="form-group">
+            <label for="email">Correu electrònic</label>
+            <input type="email" id="email" value="{{ user.email }}" disabled>
+          </div>
+  
+          <div class="form-group">
+            <label for="full-name">Nom complet</label>
+            <input type="text" id="full-name" value="{{ user.full_name ?: 'No configurat' }}" disabled>
+            <button class="btn-edit">
+              <img src="assets/icons/pencil-edit.svg" alt="Editar">
+            </button> 
+          </div>
+  
+          <div class="form-group">
+            <label>Foto de perfil</label>
+            <button class="btn-upload">
+              <img src="assets/icons/upload.svg" alt="Pujar">
+            </button>
+            <button class="btn-delete-photo">
+              <img src="assets/icons/trash.svg" alt="Eliminar">
+            </button>
+          </div>
         </div>
-
-        <div class="form-group">
-          <label for="email">Correu electrònic</label>
-          <input type="email" id="email" value="{{ user.email }}" readonly>
-          <button class="btn-edit">✏️</button>
+  
+        <div class="article-counter">
+          <h3>Total d'articles publicats</h3>
+          <p>10</p>
         </div>
-
-        <div class="form-group">
-          <label for="full_name">Nom complet</label>
-          <input type="text" id="full_name" value="{{ user.full_name ?: 'No configurat' }}" readonly>
-          <button class="btn-edit">✏️</button>
-        </div>
-
-        <div class="form-group">
-          <label>Foto de perfil</label>
-          <button class="btn-upload">📤</button>
-          <button class="btn-delete-photo">🗑️</button>
-        </div>
-      </div>
-
-      <div class="article-counter">
-        <h3>Total d’articles publicats</h3>
-        <p>10</p>
       </div>
     </div>
 

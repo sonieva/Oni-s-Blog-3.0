@@ -2,6 +2,7 @@ import { initUserDropdown } from './components/userDropdown.js';
 import { initPasswordToggle } from './components/passwordToggle.js';
 import { AliasChecker } from './components/aliasChecker.js';
 import { ArticlesModule } from './modules/articles.js';
+import { TabsManager } from './components/tabsManager.js';
 
 // Inicialitzar el dropdown d'usuari quan es carrega la pàgina
 $(document).ready(function () {
@@ -22,4 +23,9 @@ $(document).ready(function () {
     spinnerId: 'loading-spinner',
     apiEndpoint: '/api/articles'
   });
+  new TabsManager(
+    '.profile-container',
+    'tab-head',
+    'tab-content'
+  );
 });

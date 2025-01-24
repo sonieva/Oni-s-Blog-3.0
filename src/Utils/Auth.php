@@ -33,4 +33,11 @@ class Auth {
     }
     return $_SESSION['user'] ?? null;
   }
+
+  public static function updateUser(array $user): void {
+    if (session_status() === PHP_SESSION_NONE) {
+      session_start();
+    }
+    $_SESSION['user'] = $user;
+  }
 }

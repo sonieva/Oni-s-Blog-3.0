@@ -14,6 +14,10 @@ Router::GET('/profile', function () {
   Middleware::auth();
   (new ProfileController())->index();
 });
+Router::POST('/change-password', function () {
+  Middleware::auth();
+  (new AuthController())->changePassword();
+});
 
 // --------------------------------------------------------------------
 // ------------------------------- AUTH -------------------------------

@@ -42,6 +42,10 @@ class User extends BaseModel {
     ]);
   }
 
+  public function updatePassword(int $id, string $password): bool {
+    return $this->update($this->table, $id, ['password' => password_hash($password, PASSWORD_DEFAULT)]);
+  }
+
   public function createUser(array $data): ?int {
     return $this->insert($this->table, $data);
   }

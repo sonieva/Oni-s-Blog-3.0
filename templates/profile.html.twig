@@ -6,23 +6,30 @@
 
 {% block content %}
   <div class="profile-container">
-    <!-- <div class="tabs-heads">
-      <div class="tab-head active" data-tab="general">
-        <img src="assets/icons/general.svg" alt="General">
-        <p>General</p>
+    <div class="tabs-heads">
+      <div class="tab-head {{ tab == 'general' ? 'active' }}" data-tab="general">
+        <svg xmlns="http://www.w3.org/2000/svg" width="46" height="43" viewBox="0 0 46 43" fill="none" class="tab-icon">
+          <path d="M35.8477 32.2668C33.8621 29.0418 30.1336 26.875 25.875 26.875H20.125C15.8664 26.875 12.1379 29.0418 10.1523 32.2668C13.3148 35.559 17.8969 37.625 23 37.625C28.1031 37.625 32.6852 35.5506 35.8477 32.2668ZM0 21.5C0 15.7978 2.42321 10.3292 6.73654 6.2972C11.0499 2.26517 16.9 0 23 0C29.1 0 34.9501 2.26517 39.2635 6.2972C43.5768 10.3292 46 15.7978 46 21.5C46 27.2022 43.5768 32.6708 39.2635 36.7028C34.9501 40.7348 29.1 43 23 43C16.9 43 11.0499 40.7348 6.73654 36.7028C2.42321 32.6708 0 27.2022 0 21.5ZM23 22.8438C24.7156 22.8438 26.361 22.2067 27.5741 21.0727C28.7872 19.9387 29.4688 18.4006 29.4688 16.7969C29.4688 15.1931 28.7872 13.6551 27.5741 12.5211C26.361 11.3871 24.7156 10.75 23 10.75C21.2844 10.75 19.639 11.3871 18.4259 12.5211C17.2128 13.6551 16.5312 15.1931 16.5312 16.7969C16.5312 18.4006 17.2128 19.9387 18.4259 21.0727C19.639 22.2067 21.2844 22.8438 23 22.8438Z" fill="#474747"/>
+        </svg>
+        <p>General</p>  
       </div>
-      <div class="tab-head" data-tab="change-password">
-        <img src="assets/icons/change-password.svg" alt="Contrasenya">
+      <div class="tab-head {{ tab == 'change-password' ? 'active' }}" data-tab="change-password">
+        <svg xmlns="http://www.w3.org/2000/svg" width="44" height="38" viewBox="0 0 44 38" fill="none" class="tab-icon">
+          <path d="M29 29.2857H43V37H29V29.2857Z" fill="#474747"/>
+          <path d="M40.6667 29.2857V26.7143C40.6667 23.874 38.5773 21.5714 36 21.5714C33.4227 21.5714 31.3333 23.874 31.3333 26.7143V29.2857M43 13.8571V6.14286C43 3.30254 40.9107 1 38.3333 1H5.66667C3.08934 1 1 3.30254 1 6.14286V16.4286C1 19.2689 3.08934 21.5714 5.66667 21.5714H24.3333M8 11.2857H10.3333M10.3333 11.2857H12.6667M10.3333 11.2857V13.8571M10.3333 11.2857V8.71429M19.6667 11.2857H22M22 11.2857H24.3333M22 11.2857V13.8571M22 11.2857V8.71429M31.3333 11.2857H33.6667M33.6667 11.2857H36M33.6667 11.2857V13.8571M33.6667 11.2857V8.71429M29 29.2857H43V37H29V29.2857Z" stroke="#474747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
         <p>Cambiar contrasenya</p>
       </div>
-      <div class="tab-head" data-tab="favorites">
-        <img src="assets/icons/star.svg" alt="Favorits">
+      <div class="tab-head {{ tab == 'favorites' ? 'active' }}" data-tab="favorites">
+        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none" class="tab-icon">
+          <path d="M39.8489 14.0677L28.3794 12.3206L23.2531 1.46102C22.3346 -0.474683 19.6733 -0.499289 18.7469 1.46102L13.6206 12.3206L2.15106 14.0677C0.0942428 14.3793 -0.730055 17.0286 0.761531 18.546L9.05946 26.9942L7.09685 38.9283C6.74358 41.0854 8.91815 42.7012 10.7395 41.6924L21 36.0575L31.2605 41.6924C33.0818 42.693 35.2564 41.0854 34.9032 38.9283L32.9405 26.9942L41.2385 18.546C42.7301 17.0286 41.9058 14.3793 39.8489 14.0677ZM28.8976 25.6162L30.7581 36.968L21 31.612L11.2419 36.968L13.1024 25.6162L5.20489 17.5782L16.117 15.9213L21 5.58668L25.883 15.9213L36.7951 17.5782L28.8976 25.6162Z" fill="#474747"/>
+        </svg>
         <p>Favorits</p>
       </div>
-    </div> -->
+    </div>
 
     <div class="tabs">
-      <div class="tab-content active" id="general">
+      <div class="tab-content {{ tab == 'general' ? 'active' }}" id="general">
         <div class="profile-header">
           <img src="{{ user.img_path ?: 'assets/img/default-user.png' }}" alt="Foto de perfil" class="profile-avatar">
           <div>
@@ -40,7 +47,7 @@
   
         <div class="profile-info">
           <div class="form-group">
-            <label for="nickname">Nom d’usuari</label>
+            <label for="nickname">Nom d'usuari</label>
             <input type="text" id="nickname" value="{{ user.nickname }}" disabled>
             <button class="btn-edit">
               <img src="assets/icons/pencil-edit.svg" alt="Editar">
@@ -74,6 +81,44 @@
         <div class="article-counter">
           <h3>Total d'articles publicats</h3>
           <p>10</p>
+        </div>
+      </div>
+      <div class="tab-content {{ tab == 'change-password' ? 'active' }}" id="change-password">
+        <form action="/change-password" method="POST" class="change-password-form">
+          
+          {% if errors %}
+            <div class="errors">
+              <ul>
+                {% for error in errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+
+          <div class="form-group">
+            <label for="current-password">Contrasenya actual</label>
+            <input type="password" id="current-password" name="current-password">
+            <i class="fa-solid fa-lock toggle-password" data-target="current-password" title="Mostrar contrasenya"></i>
+          </div>
+  
+          <div class="form-group">
+            <label for="new-password">Nova contrasenya</label>
+            <input type="password" id="new-password" name="new-password">
+            <i class="fa-solid fa-lock toggle-password" data-target="new-password" title="Mostrar contrasenya"></i>
+          </div>
+  
+          <div class="form-group">
+            <label for="confirm-password">Repeteix contrasenya</label>
+            <input type="password" id="confirm-password" name="confirm-password">
+            <i class="fa-solid fa-lock toggle-password" data-target="confirm-password" title="Mostrar contrasenya"></i>
+          </div>
+
+          <button type="submit" class="btn-save">Desar</button>
+        </form>
+      </div>
+      <div class="tab-content {{ tab == 'favorites' ? 'active' }}" id="favorites">
+        <div class="favorites">
         </div>
       </div>
     </div>

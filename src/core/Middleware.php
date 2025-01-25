@@ -11,6 +11,13 @@ class Middleware {
     }
   }
 
+  public static function guest(): void {
+    if (Auth::isAuthenticated()) {
+      header('Location: /');
+      exit;
+    }
+  }
+
   public static function role(string $requiredRole): void {
     $user = Auth::getUser();
 

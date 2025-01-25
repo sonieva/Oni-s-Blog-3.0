@@ -56,7 +56,7 @@ export function ArticlesModule(config) {
     articles.forEach(article => {
       const id = article.id;
       const title = article.title;
-      const body = article.body.substring(0, 350) + '...';
+      const body = article.body.substring(0, 200) + '...';
       const created = new Date(article.created).toLocaleDateString();
       const last_modified = (article.last_modified) ? new Date(article.last_modified).toLocaleDateString() : null;
       const author_id = article.author_id;

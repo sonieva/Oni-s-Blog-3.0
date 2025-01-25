@@ -1,10 +1,16 @@
 <?php
+
 namespace Models;
 
 use Core\BaseModel;
 
 class User extends BaseModel {
   private string $table = 'users';
+
+  public function findUsers(): array {
+    $stmt = $this->db->query("SELECT id, nickname, email, full_name, role, img_path FROM {$this->table}");
+    return $stmt->fetchAll();
+  }
 
   public function findByEmailOrNickname(string $identifier): ?array {
     $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE email = :identifier OR nickname = :identifier");

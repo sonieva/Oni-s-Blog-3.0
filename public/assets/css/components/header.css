@@ -134,4 +134,9 @@
       }
     }
   }
+
+  img[src^="assets/icons"]:not(#dropdown-toggle img) {
+    width: 16px;
+    margin-right: .5rem;
+  }
 }

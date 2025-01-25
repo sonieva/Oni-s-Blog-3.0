@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="assets/css/admin.css">
+{% endblock %}
+
+{% block content %}
+  <div class="users-list">
+    <div class="users-list-header">
+      <div class="users-list-header-title">
+        <h1>Llista d'usuaris registrats</h1>
+        <img src="assets/icons/users.svg" alt="users">
+      </div>
+      <div class="user-counter-container">
+        <h1>Total usuaris</h1>
+        <span id="user-counter"></span>
+      </div>
+    </div>
+    <div class="users-list-content">
+    </div>
+  </div>
+{% endblock %}

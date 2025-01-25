@@ -8,11 +8,11 @@ use Core\BaseModel;
 class Article extends BaseModel {
   private string $table = 'articles';
 
-  public function getArticles(): array {
+  public function findArticles(): array {
     return $this->findAll($this->table);
   }
 
-  public function getArticle(int $id) {
+  public function findArticle(int $id) {
     return $this->findById($this->table, $id);
   }
 
@@ -52,5 +52,26 @@ class Article extends BaseModel {
     $sql = "SELECT COUNT(*) as total FROM articles";
     $stmt = $this->db->query($sql);
     return (int) $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+  }
+
+  public function getArticlesByAuthor(string $author): array {
+    $sql = "
+      SELECT 
+        articles.*
+      FROM 
+        articles
+      INNER JOIN 
+        users
+      ON 
+        articles.author_id = users.id
+      WHERE 
+        users.nickname = :author
+      ORDER BY 
+        articles.created DESC
+    ";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindValue(':author', $author, PDO::PARAM_STR);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 }

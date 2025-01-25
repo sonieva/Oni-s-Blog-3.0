@@ -80,7 +80,7 @@ class AuthController {
     $this->showLoginForm();
   }
 
-  public function signup() {
+  public function register() {
     $nickname = $_POST['nickname'] ?? '';
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
@@ -109,12 +109,12 @@ class AuthController {
     }
 
     if ($errors) {
-      TwigService::render('auth/register.html.twig', [
+      $this->viewData += [
         'errors' => $errors,
         'nickname' => $nickname,
         'email' => $email
-      ]);
-      return;
+      ];
+      return $this->showRegisterForm();
     }
 
     $verificationCode = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
@@ -177,51 +177,6 @@ class AuthController {
   public function logout() {
     Auth::logout();
     header('Location: /');
-    exit;
-  }
-
-  public function changePassword() {
-    $oldPassword = $_POST['current-password'] ?? '';
-    $newPassword = $_POST['new-password'] ?? '';
-    $confirmPassword = $_POST['confirm-password'] ?? '';
-
-    $errors = [];
-
-    if (empty($oldPassword) || empty($newPassword) || empty($confirmPassword)) {
-      $errors[] = 'Tots els camps són obligatoris';
-    }
-
-    if ($newPassword !== $confirmPassword) {
-      $errors[] = 'Les contrasenyes no coincideixen';
-    }
-
-    if (!Validator::isStrongPassword($newPassword)) {
-      $errors[] = 'La contrasenya ha de tenir 8 caràcters, incloure majúscules, minúscules, números i un caràcter especial.';
-    }
-
-    $user = Auth::getUser();
-
-    if (!password_verify($oldPassword, $user['password'])) {
-      $errors[] = 'La contrasenya antiga no és correcta';
-    }
-
-    if ($errors) {
-      TwigService::render('profile.html.twig', [
-        'title' => 'Canviar contrasenya',
-        'tab' => 'change-password',
-        'errors' => $errors
-      ]);
-      return;
-    }
-
-    $encryptedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-
-    $this->userModel->updatePassword($user['id'], $encryptedPassword);
-
-    $user['password'] = $encryptedPassword;
-    Auth::updateUser($user);
-
-    header('Location: /profile');
     exit;
   }
 

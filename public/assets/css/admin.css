@@ -1,0 +1,138 @@
+@import url('variables.css');
+
+.users-list {
+  background-color: white;
+  box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.25);
+  padding: 15px;
+  width: 60%;
+
+  .users-list-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+
+    .users-list-header-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      h1 {
+        font-size: 1.5rem;
+        font-weight: 400;
+      }
+
+      img {
+        margin-left: 10px;
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    .user-counter-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      h1 {
+        font-size: 1.5rem;
+        font-weight: 350;
+      }
+
+      #user-counter {
+        margin-left: 13px;
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .users-list-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    overflow-x: auto;
+    max-height: 60vh;
+    padding-right: 15px;
+
+    .user-card {
+      position: relative;
+      background-color: var(--light-purple);
+      border-radius: 10px;
+      border: 2px solid #000;
+      padding: 20px 15px;
+      
+      .user-card-info {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+
+        .user-avatar {
+          border-radius: 50%;
+          width: 100px;
+          height: 100px;
+          border: 1px solid var(--disabled);
+        }
+
+        .user-details {
+          display: flex;
+          flex-direction: column;
+
+          .user-nickname {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.24px;
+          }
+
+          .user-fullname,
+          .user-email {
+            font-size: 1rem;
+            font-weight: 350;
+            letter-spacing: 0.32px;
+          }
+
+          .user-email {
+            color: var(--gray);
+          }
+        }
+      }
+
+      .user-actions {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        button {
+          width: 33px;
+          height: 33px;
+          cursor: pointer;
+          transition: all 0.3s ease-in-out;
+          padding: 5.5px;
+          border-radius: 6px;
+        }
+
+        .btn-make-admin {
+          background-color: var(--btn-make-admin-color);
+          border: 2px solid var(--btn-make-admin-border-color);
+
+          &:hover {
+            background-color: var(--btn-make-admin-hover-color);
+            border: 2px solid var(--btn-make-admin-hover-border-color);
+          }
+        }
+
+        .btn-delete-user {
+          background-color: var(--btn-danger-color);
+          border: 2px solid var(--btn-danger-border-color);
+
+          &:hover {
+            background-color: var(--btn-danger-hover-color);
+            border: 2px solid var(--btn-danger-hover-border-color);
+          }
+        }
+      }
+    }
+  }
+}

@@ -5,7 +5,7 @@
   --mustard-hover: #f1c219;
   --light-pink: #ffadc2;
   --light-pink-focus: #ff85a3;
-  --dark-pink: #ff4775;
+  --dark-pink: #ff5b84;
   --light-purple: #ebdde9;
   --black: #474747;
   --gray: #666666;
@@ -21,4 +21,10 @@
   --btn-save-border-color: #F286A2;
   --btn-save-hover-color: #F286A2;
   --btn-save-hover-border-color: #F286A2;
+  --dot-color: #febccc;
+  --dot-active-color: #FF85A3;
+  --btn-make-admin-color: #6085FF;
+  --btn-make-admin-border-color: #4775FF;
+  --btn-make-admin-hover-color: #4775FF;
+  --btn-make-admin-hover-border-color: #4775FF;
 }

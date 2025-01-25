@@ -5,14 +5,19 @@ namespace Controllers\Api;
 use Models\Article;
 
 class ArticleController {
+  private Article $articleModel;
+
+  public function __construct() {
+    $this->articleModel = new Article();
+  }
+
   public function getArticles() {
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 10;
     $offset = ($page - 1) * $limit;
 
-    $articleModel = new Article();
-    $articles = $articleModel->getArticlesWithPagination($limit, $offset);
-    $totalArticles = $articleModel->countArticles();
+    $articles = $this->articleModel->getArticlesWithPagination($limit, $offset);
+    $totalArticles = $this->articleModel->countArticles();
     $totalPages = ceil($totalArticles / $limit);
 
     header('Content-Type: application/json');
@@ -24,10 +29,8 @@ class ArticleController {
     exit;
   }
 
-  public function getArticleDetails($id)
-  {
-    $articleModel = new Article();
-    $article = $articleModel->getArticle($id);
+  public function getArticleDetails($id) {
+    $article = $this->articleModel->findArticle($id);
 
     if (!$article) {
         http_response_code(404);
@@ -37,6 +40,14 @@ class ArticleController {
 
     header('Content-Type: application/json');
     echo json_encode($article);
+    exit;
+  }
+
+  public function getArticlesByAuthor($author) {
+    $articles = $this->articleModel->getArticlesByAuthor($author);
+
+    header('Content-Type: application/json');
+    echo json_encode($articles);
     exit;
   }
 }

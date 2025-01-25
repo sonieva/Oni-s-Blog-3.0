@@ -4,6 +4,7 @@ use Utils\Router;
 use Controllers\AuthController;
 use Controllers\HomeController;
 use Controllers\ProfileController;
+use Controllers\AdminController;
 use Core\Middleware;
 
 // Inici
@@ -14,9 +15,16 @@ Router::GET('/profile', function () {
   Middleware::auth();
   (new ProfileController())->index();
 });
+
 Router::POST('/change-password', function () {
   Middleware::auth();
-  (new AuthController())->changePassword();
+  (new ProfileController())->changePassword();
+});
+
+// Admin
+Router::GET('/admin', function () {
+  Middleware::authAndRole('admin');
+  (new AdminController())->index();
 });
 
 // --------------------------------------------------------------------
@@ -24,16 +32,40 @@ Router::POST('/change-password', function () {
 // --------------------------------------------------------------------
 
 // Login
-Router::GET('/login',[AuthController::class,'showLoginForm']);
-Router::POST('/login',[AuthController::class,'login']);
+Router::GET('/login', function () {
+  Middleware::guest();
+  (new AuthController())->showLoginForm();
+});
+
+Router::POST('/login', function () {
+  Middleware::guest();
+  (new AuthController())->login();
+});
 
 // Register
-Router::GET('/register',[AuthController::class,'showRegisterForm']);
-Router::POST('/register',[AuthController::class,'signup']);
+Router::GET('/register', function () {
+  Middleware::guest();
+  (new AuthController())->showRegisterForm();
+});
+
+Router::POST('/register', function () {
+  Middleware::guest();
+  (new AuthController())->register();
+});
 
 // Verify email
-Router::GET('/verify-email', [AuthController::class, 'showVerificationForm']);
-Router::POST('/verify-email', [AuthController::class, 'verifyCode']);
+Router::GET('/verify-email', function () {
+  Middleware::guest();
+  (new AuthController())->showVerificationForm();
+});
+
+Router::POST('/verify-email', function () {
+  Middleware::guest();
+  (new AuthController())->verifyCode();
+});
 
 // Logout
-Router::GET('/logout', [AuthController::class, 'logout']);
+Router::GET('/logout', function () {
+  Middleware::auth();
+  (new AuthController())->logout();
+});

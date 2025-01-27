@@ -38,7 +38,7 @@ $(document).ready(function () {
     );
   } else if (currentPath === '/profile') {
     new TabsManager(
-      '.profile-container',
+      '.tabs-container',
       'tab-head',
       'tab-content'
     );

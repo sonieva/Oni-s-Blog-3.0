@@ -3,10 +3,11 @@
 {% block stylesheets %}
   <link rel="stylesheet" href="assets/css/profile.css">
   <link rel="stylesheet" href="assets/css/components/article.css">
+  <link rel="stylesheet" href="assets/css/components/tabs.css">
 {% endblock %}
 
 {% block content %}
-<div class="profile-container">
+<div class="tabs-container">
   <div class="tabs-heads">
     <div class="tab-head {{ tab == 'general' ? 'active' }}" data-tab="general">
       <svg xmlns="http://www.w3.org/2000/svg" width="46" height="43" viewBox="0 0 46 43" fill="none" class="tab-icon">
@@ -163,7 +164,6 @@
       </div>
     </div>
   </div>
-
 </div>
 {% endblock %}
 

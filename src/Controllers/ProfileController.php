@@ -13,7 +13,7 @@ class ProfileController {
 
   public function __construct() {
     $this->viewData['title'] = 'Perfil';
-    $this->viewData['tab'] = 'favorites';
+    $this->viewData['tab'] = 'general';
     $this->userModel = new User();
   }
 

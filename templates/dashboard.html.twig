@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <link rel="stylesheet" href="assets/css/components/tabs.css">
+{% endblock %}
+
+{% block content %}
+<div class="tabs-container">
+  <div class="tabs-heads">
+    <div class="tab-head {{ tab == 'view-articles' ? 'active' }}" data-tab="view-articles">
+      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="44" viewBox="0 0 35 44" fill="none" class="tab-icon">
+        <path d="M15.2425 43H6.2434C3.75835 43 1.74382 40.9107 1.74382 38.3333V36V5.66667C1.74382 3.08934 3.75835 1 6.2434 1H19.7421M33.2408 15L19.7421 1M33.2408 15H24.2417C21.7566 15 19.7421 12.9107 19.7421 10.3333V1M33.2408 15V19.6667M8.49318 33.6667H10.743M8.49318 24.3333H10.743M8.49318 15H12.9928M27.0499 34.3366C28.0935 33.2776 28.7413 31.8006 28.7413 30.1667C28.7413 26.945 26.2231 24.3333 23.1168 24.3333C20.0105 24.3333 17.4923 26.945 17.4923 30.1667C17.4923 33.3883 20.0105 36 23.1168 36C24.6477 36 26.0357 35.3657 27.0499 34.3366ZM27.0499 34.3366L33.2408 40.6667" stroke="#474747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p>Els meus articles</p>  
+    </div>
+    <div class="tab-head {{ tab == 'add-article' ? 'active' }}" data-tab="add-article">
+      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="44" viewBox="0 0 35 44" fill="none" class="tab-icon">
+        <path d="M14.7771 43H6.08824C3.68888 43 1.74382 40.9107 1.74382 38.3333V36V5.66667C1.74382 3.08934 3.68888 1 6.08824 1H19.1215M32.1547 15L19.1215 1M32.1547 15H23.4659C21.0666 15 19.1215 12.9107 19.1215 10.3333V1M32.1547 15V19.6667M27.8103 40.6667V29M33.2408 34.8333H22.3798M8.26045 33.6667H14.7771M8.26045 24.3333H19.1215M8.26045 15H12.6049" stroke="#474747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p>Afegir article</p>
+    </div>
+  </div>
+  
+  <div class="tabs">
+    <div class="tab-content {{ tab == 'view-articles' ? 'active' }}" id="view-articles">
+      <div class="table-container">
+        <table class="articles-table">
+          <thead>
+            <tr>
+              <th><img src="assets/icons/title.svg"> Titol</th>
+              <th><img src="assets/icons/body.svg"> Cos</th>
+              <th><img src="assets/icons/calendar.svg"> Creat</th>
+              <th><img src="assets/icons/calendar.svg"> Modificat</th>
+              <th><img src="assets/icons/actions.svg"> Accions</th>
+            </tr>
+          </thead>
+          <tbody class="articles-list">
+            {% for article in articles %}
+              <tr>
+                <td>{{ article.title }}</td>
+                <td>{{ article.body | slice(0,50) }}...</td>
+                <td>{{ article.created | date('d/m/Y') }}</td>
+                <td>{{ article.last_modified ? article.last_modified | date('d/m/Y') : '--' }}</td>
+                <td>
+                  <button class="btn-edit-article">
+                    <img src="assets/icons/pencil-edit.svg">
+                  </button>
+                  <button class="btn-delete-article">
+                    <img src="assets/icons/trash.svg">
+                  </button>
+                </td>
+              </tr>
+            {% else %}
+              <tr>
+                <td colspan="5">No hi ha articles per mostrar</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="tab-content {{ tab == 'add-article' ? 'active' }}" id="add-article">
+    </div>
+  </div>
+</div>
+
+{% endblock %}

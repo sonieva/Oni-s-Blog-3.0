@@ -4,6 +4,7 @@ use Utils\Router;
 use Controllers\AuthController;
 use Controllers\HomeController;
 use Controllers\ProfileController;
+use Controllers\DashboardController;
 use Controllers\AdminController;
 use Core\Middleware;
 
@@ -25,6 +26,12 @@ Router::POST('/change-password', function () {
 Router::GET('/admin', function () {
   Middleware::authAndRole('admin');
   (new AdminController())->index();
+});
+
+// Dashboard
+Router::GET('/dashboard', function () {
+  Middleware::auth();
+  (new DashboardController())->index();
 });
 
 // --------------------------------------------------------------------

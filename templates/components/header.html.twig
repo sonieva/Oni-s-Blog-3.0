@@ -1,0 +1,54 @@
+<nav class="navbar">
+  <div class="logo">
+    <a class="logo" href="/">
+      <img src="assets/img/logo.png" alt="Logo" width="40" height="40" class="logo-img">
+      <h4 class="logo-name">Oni's Blog 3.0</h4>
+    </a>
+    <h2 class="vertical-bar">|</h2>
+    <h4 class="nom-pantalla">{{ title }}</h4>
+  </div>
+
+  <div class="nav-items">
+    <a class="nav-item" href="/">
+      <img src="assets/icons/home.svg">Inici
+    </a>
+
+    <div class="nav-item">
+      <button id="dropdown-toggle">
+        {% if user %}
+          <img src="{{ user.img_path ?: 'assets/img/default-user.png' }}" alt="Imatge de perfil" class="foto-perfil-header" id="foto-perfil-header">
+        {% else %}
+          <img src="assets/icons/incognito.svg" alt="Usuari anònim">
+        {% endif %}
+        <span id="header-nom">{{ user ? (user.full_name ?: user.nickname) : "Identifica't" }}</span>
+        <i id="caret" class="fa-solid fa-caret-left"></i>
+      </button>
+
+      <div id="dropdown" class="dropdown-content">
+        {% if user %}
+          <a href="/profile">
+            <img src="assets/icons/profile.svg">Perfil
+          </a>
+          <a href="/dashboard">
+            <img src="assets/icons/dashboard.svg">Dashboard
+          </a>
+          {% if user.role == 'admin' %}
+            <a href="/admin">
+              <img src="assets/icons/admin-users.svg">Usuaris
+            </a>
+          {% endif %}
+          <a href="/logout">
+            <img src="assets/icons/logout.svg">Sortir
+          </a>
+        {% else %}
+          <a href="/login">
+            <img src="assets/icons/login.svg">Iniciar sessió
+          </a>
+          <a href="/register">
+            <i class="fa-solid fa-user-plus"></i>Crear compte
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>

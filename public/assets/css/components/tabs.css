@@ -1,4 +1,4 @@
-@import url('variables.css');
+@import url('../variables.css');
 
 .tabs-container {
   display: flex;
@@ -19,15 +19,24 @@
       cursor: pointer;
     }
 
-    &.active,
-    &:hover {
+    &.active:not([data-tab*="article"]),
+    &:hover:not([data-tab*="article"]) {
       color: var(--light-pink);
 
       svg > path:nth-child(1) {
         fill: var(--light-pink);
       }
 
-      svg > path:nth-child(2) {
+      svg > path {
+        stroke: var(--light-pink);
+      }
+    }
+
+    &.active[data-tab*="article"],
+    &:hover[data-tab*="article"] {
+      color: var(--light-pink);
+
+      svg > path {
         stroke: var(--light-pink);
       }
     }

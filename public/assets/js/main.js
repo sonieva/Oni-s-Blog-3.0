@@ -43,5 +43,11 @@ $(document).ready(function () {
       'tab-content'
     );
     new ArticleCounter('/api/articles');
+  } else if (currentPath === '/dashboard') {
+    new TabsManager(
+      '.tabs-container',
+      'tab-head',
+      'tab-content'
+    );
   }
 });
